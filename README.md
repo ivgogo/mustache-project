@@ -1,1 +1,7 @@
-# hyperspectral-project
+# Hyperspectral Camera - Project
+
+## Contents
+
+- **models**: 
+- **data**:
+- **random-scripts**: 
