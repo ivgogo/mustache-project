@@ -1,0 +1,9 @@
+DATA:
+  DATA_DIR: 
+  MODE: x
+MODEL:
+  ARCH: xap4h
+TRAIN:
+  BATCH_SIZE: 64
+  EPOCHS: 25
+  LR: 1e-5 
