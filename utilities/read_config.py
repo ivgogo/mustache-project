@@ -13,5 +13,3 @@ def read_config(file_path):
         epochs = config['TRAIN']['EPOCHS']
         learning_rate = config['TRAIN']['LR']
     return {'data_dir': data_dir, 'mode': mode, 'arch': arch, 'batch_size': batch_size, 'epochs': epochs, 'lr': learning_rate}
-
-#print(read_config('/home/ivan/Documentos/project/run/config1.yaml'))

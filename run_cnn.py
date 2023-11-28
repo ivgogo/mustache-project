@@ -8,7 +8,7 @@ from torch.utils.data import Dataset, DataLoader
 import sys
 import os
 import wandb
-import datetime
+from datetime import datetime
 # -----------------------------------
 from models import FCNet
 from data import CustomDataset
@@ -40,9 +40,9 @@ def main(data_dir, mode, batch_size, learning_rate, num_epochs):
 
     # labels paths are constant and non variable but freqs paths will depend on what mode we run the train session
     labels_train = os.path.join(data_dir,"ready/train/y/y.csv")
-    labels_val = os.path.join(data_dir,"/ready/val/y/y.csv")
-    freqs_train = os.path.join(data_dir,f"/ready/train/{mode}/{mode}.csv")
-    freqs_val = os.path.join(data_dir,f"/ready/val/{mode}/{mode}.csv")
+    labels_val = os.path.join(data_dir,"ready/val/y/y.csv")
+    freqs_train = os.path.join(data_dir,f"ready/train/{mode}/{mode}.csv")
+    freqs_val = os.path.join(data_dir,f"ready/val/{mode}/{mode}.csv")
 
     df = CustomDataset(freqs_train, labels_train)
     val_df = CustomDataset(freqs_val, labels_val)
@@ -106,4 +106,5 @@ if __name__ == '__main__':
     except:
         print('Please use: python3 run_cnn.py <config_file.yaml>')
     else:
+        print(f'Training sesion parameters --> mode:{config_d["mode"]}, batch_size:{config_d["batch_size"]}, lr:{config_d["lr"]}, epochs:{config_d["epochs"]}')
         main(config_d['data_dir'], config_d['mode'], int(config_d['batch_size']), float(config_d['lr']), int(config_d['epochs']))
