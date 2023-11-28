@@ -4,7 +4,6 @@ from sklearn.model_selection import train_test_split
 import torch
 import torch.nn as nn
 import torchvision
-import torchvision.transforms as transforms
 from torch.utils.data import Dataset, DataLoader
 import sys
 import os
@@ -13,12 +12,12 @@ import datetime
 # -----------------------------------
 from models import FCNet
 from data import CustomDataset
-from utilities import Train, Validate
+from utilities import Train, Validate, read_config
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using {device}...") # check device running code
 
-def main(mode, batch_size, learning_rate, num_epochs):
+def main(data_dir, mode, batch_size, learning_rate, num_epochs):
 
     date = datetime.now()
 
@@ -29,7 +28,7 @@ def main(mode, batch_size, learning_rate, num_epochs):
         project = "moustache",
         name = f"{date.day}/{date.month}/{date.year}||{date.hour}:{date.minute}",
     
-        # track hyperparameters and run metadata
+        # track hyperparameters
         config = {
         "mode": mode,
         "batch_size": batch_size,
@@ -39,28 +38,16 @@ def main(mode, batch_size, learning_rate, num_epochs):
         }
     )
 
-    #CNN parameters
-    input_size = 24
-    hidden_size = 8
-    num_classes = 2
-    testing_size = 0.2
-
-    transform = transforms.Compose([
-     transforms.ToTensor(),
-    ])
-
-    # labels paths are constant and non variable
-    labels_train = "/home/ivang/hayat_data_m/ready/train/y/y.csv"
-    labels_val = "/home/ivang/hayat_data_m/ready/val/y/y.csv"
-
-    # freqs paths are variable
-    freqs_train = os.path.join("/home/ivang/hayat_data_m/ready/train/",f"{mode}/{mode}.csv")
-    freqs_val = os.path.join("/home/ivang/hayat_data_m/ready/val/",f"{mode}/{mode}.csv")
+    # labels paths are constant and non variable but freqs paths will depend on what mode we run the train session
+    labels_train = os.path.join(data_dir,"ready/train/y/y.csv")
+    labels_val = os.path.join(data_dir,"/ready/val/y/y.csv")
+    freqs_train = os.path.join(data_dir,f"/ready/train/{mode}/{mode}.csv")
+    freqs_val = os.path.join(data_dir,f"/ready/val/{mode}/{mode}.csv")
 
     df = CustomDataset(freqs_train, labels_train)
     val_df = CustomDataset(freqs_val, labels_val)
     
-    train_df, test_df = train_test_split(df, test_size = testing_size)
+    train_df, test_df = train_test_split(df, test_size = 0.2)
     
     # Data loaders for training and validation sets
     train_loader = torch.utils.data.DataLoader(dataset=train_df, batch_size=batch_size, shuffle=True) 
@@ -68,6 +55,11 @@ def main(mode, batch_size, learning_rate, num_epochs):
 
     # The test_loader remains unchanged for the test set
     test_loader = torch.utils.data.DataLoader(dataset=test_df, batch_size=batch_size, shuffle=False)
+
+    #CNN parameters
+    input_size = 24
+    hidden_size = 8
+    num_classes = 2
 
     model = FCNet(input_size, hidden_size, num_classes).to(device)
 
@@ -110,13 +102,8 @@ def main(mode, batch_size, learning_rate, num_epochs):
 
 if __name__ == '__main__':
     try:
-        #arch = ...
-        mode = sys.argv[1]
-        batch_size = sys.argv[2]
-        learning_rate = sys.argv[3]
-        num_epochs = sys.argv[4]
+        config_d = read_config(sys.argv[1])
     except:
-        #print('Please use python3 run_cnn.py <config_file.yaml> <data_dir>')
-        print('Please use: python3 run_cnn.py <arch:[xap3h,xap4h]> <mode:[x,dx,d2x]> <batch_size> <learning_rate> <n_epochs>')
+        print('Please use: python3 run_cnn.py <config_file.yaml>')
     else:
-        main(mode, int(batch_size), float(learning_rate), int(num_epochs))
+        main(config_d['data_dir'], config_d['mode'], int(config_d['batch_size']), float(config_d['lr']), int(config_d['epochs']))

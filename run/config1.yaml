@@ -6,4 +6,4 @@ MODEL:
 TRAIN:
   BATCH_SIZE: 64
   EPOCHS: 25
-  LR: 1e-5 
+  LR: 1e-2
