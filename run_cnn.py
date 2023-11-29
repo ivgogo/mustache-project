@@ -10,14 +10,14 @@ import os
 import wandb
 from datetime import datetime
 # -----------------------------------
-from models import FCNet
+#from models import FCNet
 from data import CustomDataset
 from utilities import Train, Validate, read_config
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using {device}...") # check device running code
 
-def main(data_dir, mode, batch_size, learning_rate, num_epochs):
+def main(data_dir, mode, arch, batch_size, learning_rate, num_epochs):
 
     date = datetime.now()
 
@@ -61,7 +61,11 @@ def main(data_dir, mode, batch_size, learning_rate, num_epochs):
     hidden_size = 8
     num_classes = 2
 
-    model = FCNet(input_size, hidden_size, num_classes).to(device)
+    # We will import the arch specified on our config file for our network during this training session
+    model_module = __import__('models.' + config_d['arch'], fromlist=[config_d['arch']])
+    model = getattr(model_module, arch).FCNet(input_size, hidden_size, num_classes).to(device)
+
+    #model = FCNet(input_size, hidden_size, num_classes).to(device)
 
     # optimizer
     criterion = nn.CrossEntropyLoss()
@@ -107,4 +111,4 @@ if __name__ == '__main__':
         print('Please use: python3 run_cnn.py <config_file.yaml>')
     else:
         print(f'Training sesion parameters --> mode:{config_d["mode"]}, batch_size:{config_d["batch_size"]}, lr:{config_d["lr"]}, epochs:{config_d["epochs"]}')
-        main(config_d['data_dir'], config_d['mode'], int(config_d['batch_size']), float(config_d['lr']), int(config_d['epochs']))
+        main(config_d['data_dir'], config_d['mode'], config_d['arch'], int(config_d['batch_size']), float(config_d['lr']), int(config_d['epochs']))

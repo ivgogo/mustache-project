@@ -10,9 +10,9 @@ from torch.utils.data import Dataset, DataLoader
 import sys
 import os
 
-class FCNet2(nn.Module):
+class Network(nn.Module):
     def __init__(self, input_size, hidden_size, num_classes):
-        super(FCNet2, self).__init__()
+        super(Network, self).__init__()
         self.fc1 = nn.Linear(input_size, hidden_size).double()
         self.drop = nn.Dropout(0.)
         self.hard = nn.Hardswish()
