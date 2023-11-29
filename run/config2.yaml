@@ -2,8 +2,8 @@ DATA:
   DATA_DIR: /home/ivang/hayat_data_m/
   MODE: dx
 MODEL:
-  ARCH: xap4h
+  ARCH: xap3h
 TRAIN:
   BATCH_SIZE: 64
-  EPOCHS: 25
-  LR: 1e-1
+  EPOCHS: 10
+  LR: 1e-3

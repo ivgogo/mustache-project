@@ -5,5 +5,5 @@ MODEL:
   ARCH: xap2h
 TRAIN:
   BATCH_SIZE: 64
-  EPOCHS: 25
+  EPOCHS: 10
   LR: 1e-2
