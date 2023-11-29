@@ -63,7 +63,7 @@ def main(data_dir, mode, arch, batch_size, learning_rate, num_epochs):
 
     # We will import the arch specified on our config file for our network during this training session
     model_module = __import__('models.' + config_d['arch'], fromlist=[config_d['arch']])
-    model = getattr(model_module, arch).FCNet(input_size, hidden_size, num_classes).to(device)
+    model = getattr(model_module, arch).Network(input_size, hidden_size, num_classes).to(device)
 
     #model = FCNet(input_size, hidden_size, num_classes).to(device)
 
