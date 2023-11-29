@@ -108,6 +108,6 @@ if __name__ == '__main__':
         print('Please use: python3 run_cnn.py <config_file.yaml>')
     else:
         # check params/config loaded correctly for training session
-        print(f'Training sesion parameters --> mode:{config_d["mode"]}, arch:{config_d["arch"]}, batch_size:{config_d["batch_size"]}, lr:{config_d["lr"]}, epochs:{config_d["epochs"]}')
-        print("======= Starting Traing Session =======")
+        #print(f'Training sesion parameters --> mode:{config_d["mode"]}, arch:{config_d["arch"]}, batch_size:{config_d["batch_size"]}, lr:{config_d["lr"]}, epochs:{config_d["epochs"]}')
+        print("============== Starting Traing Session ==============")
         main(config_d['data_dir'], config_d['mode'], config_d['arch'], int(config_d['batch_size']), float(config_d['lr']), int(config_d['epochs']))
