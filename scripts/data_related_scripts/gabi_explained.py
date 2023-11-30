@@ -70,6 +70,14 @@ for i in range(0, r1):
 
 print("filtered spectral signal size: ", np.shape(signal_filtered))
 
+# Another way of doing it gabi sent me
+'''
+for i in range(0, r1):
+    signal_filtered[i,:] = signal.convolve(spectral[i,:], w, mode='same', method='direct')
+
+print("filtered spectral signal size: ", np.shape(signal_filtered))
+'''
+
 # The first derivate tells us basically towards what direction the function is going so if we obtain
 # the difference beetween the next point and the point before we'll get the direction towards the function is going.
 signal_filtered_der1 = signal_filtered.copy()
@@ -83,6 +91,13 @@ signal_filtered_der1=np.where(signal_filtered_der1 < -0.5, -0.5, signal_filtered
 signal_filtered_der1=np.where(signal_filtered_der1 > 0.5, 0.5, signal_filtered_der1)
 
 # the same thing for 2nd derivative...
+signal_filtered_der2 = signal_filtered.copy()
+for k in range(1, r2-1):
+    signal_filtered_der2[:,k] = signal_filtered[:,k+1] -2*signal_filtered[:,k]+signal_filtered[:,k-1]
+
+signal_filtered_der2=signal_filtered_der2 * 1000
+signal_filtered_der2=np.where(signal_filtered_der2 < -0.5, -0.5, signal_filtered_der2)
+signal_filtered_der2=np.where(signal_filtered_der2 > 0.5, 0.5, signal_filtered_der2)
 
 #save to panda
 data_df = pd.DataFrame(signal_filtered)

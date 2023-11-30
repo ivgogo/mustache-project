@@ -7,8 +7,6 @@ import time
 import sys
 import os
 
-#csv_file_path = "/home/ivan/Documentos/hyperspectral_project/data/red_big_part1_13_data.csv" # 152986 x 554
-
 #data_path = "/media/ivan/Ivan/hyperspectral_project/data/conveyor_belt_part1_03_data.csv"
 #data_path = "/media/ivan/Ivan/hyperspectral_project/data/pork_part1_04_data.csv" # 49752 x 554
 #data_path = "/media/ivan/Ivan/hyperspectral_project/data/pork_part1_05_data.csv" # 78054 x 554

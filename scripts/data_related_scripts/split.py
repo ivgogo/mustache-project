@@ -1,5 +1,8 @@
 import pandas as pd
 
+# script created to split data and train with very small datasets in order to not blow up my laptop and to check if
+# main code is working before uploading to the server
+
 data_path = "/home/ivan/Documentos/ivan/data.csv"
 df = pd.read_csv(data_path)
 
