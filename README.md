@@ -7,4 +7,3 @@
 - **run**:
 - **scripts**:
 - **utilities**:
-- *run_cnn.py*:
