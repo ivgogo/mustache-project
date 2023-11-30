@@ -2,6 +2,9 @@
 
 ## Contents
 
-- **models**: 
-- **data**:
-- **random-scripts**: 
+- **data**: 
+- **models**:
+- **run**:
+- **scripts**:
+- **utilities**:
+- *run_cnn.py*:
