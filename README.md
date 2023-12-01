@@ -1,4 +1,4 @@
-# Hyperspectral Camera - Project 🥸
+# Hyperspectral Camera - Project 
 
 ## Contents
 
