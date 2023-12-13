@@ -27,7 +27,7 @@ if __name__ == '__main__':
                         print('Processing', file)
                         
                         # read and append
-                        columns_names = [f"f{i}" for i in range(0, 554)]  # first column gets deleted that's why I start at 1
+                        columns_names = [f"f{i}" for i in range(0, 554)]  # first column gets deleted that's why I start at f1
                         df = pd.read_csv(file, header=None, names=columns_names)
                         df = df.drop(df.columns[0], axis=1) # drop first column --> contains index numbers
                         dfs.append(df)

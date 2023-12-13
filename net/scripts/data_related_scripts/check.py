@@ -25,12 +25,19 @@ start_time = time.time()
 #data_path = "/home/ivan/Documentos/ivan/ready/sampled_data.csv"
 #data_path = "/home/ivan/Documentos/ivan/ready/train/y/y.csv"
 #data_path = "/home/ivan/Documentos/ivan_m/ready/sampled/sampled_data.csv"
-data_path = "/home/ivan/Documentos/ivan_m/ready/train/d2x/d2x.csv"
+#data_path = "/home/ivan/Documentos/ivan_m/ready/train/d2x/d2x.csv"
 
-df = pd.read_csv(data_path)
+#data_path = "/media/ivan/Ivan/ivan/csv_test/conveyor_belt_part1_03_data.csv"        # 120902 x 553
+data_path = "/media/ivan/Ivan/ivan/csv_test/pork_part1_04_data.csv"                #  49753 x 553
+#data_path = "/media/ivan/Ivan/ivan/csv_test/pork_part2_05_data.csv"                #  40010 x 553
+#data_path = "/media/ivan/Ivan/ivan/csv_test/pork_part6_05_data.csv"                #  11870 x 553
+#data_path = "/media/ivan/Ivan/ivan/csv_test/red_big_part1_13_data.csv"             #  152987 x 553
+#data_path = "/media/ivan/Ivan/ivan/csv_test/red_small_on_fat_part2_09_data.csv"    #  9476 x 553
+
+df = pd.read_csv(data_path, header=None)
 #selected_columns = 184
 #df = df.iloc[:, 0:selected_columns]
-#df = df.drop((df.columns[0]), axis=1)
+df = df.drop((df.columns[0]), axis=1)
 print(df)
 
 end_time = time.time()
