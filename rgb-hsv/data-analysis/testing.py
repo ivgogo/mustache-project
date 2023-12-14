@@ -20,13 +20,14 @@ import os
 #data_path = "/media/ivan/Ivan/my_data/class_n_3.0.csv"     # 44411 x 553   #3  # Meat                                      # 20000
 #data_path = "/media/ivan/Ivan/my_data/class_n_4.0.csv"     # 17398 x 553   #4  # Meat Shadow                               # 8500
 #data_path = "/media/ivan/Ivan/my_data/class_n_5.0.csv"     # 176 x 553     #5  # Missclassified meat                       # 80
-#data_path = "/media/ivan/Ivan/my_data/class_n_6.0.csv"     # 2569 x 553    #6  # Fat                                       # 1250
+data_path = "/media/ivan/Ivan/my_data/class_n_6.0.csv"     # 2569 x 553    #6  # Fat                                       # 1250
 #data_path = "/media/ivan/Ivan/my_data/class_n_7.0.csv"     # 10643 x 553   #7  # Fat Shadow                                # 5000
 #data_path = "/media/ivan/Ivan/my_data/class_n_8.0.csv"     # 26436 x 553   #8  # Missclassified fat                        # 13000
-data_path = "/media/ivan/Ivan/my_data/class_n_9.0.csv"     # 152987 x 553  #9  # PEHD Red Plastic                          # 75000
+#data_path = "/media/ivan/Ivan/my_data/class_n_9.0.csv"     # 152987 x 553  #9  # PEHD Red Plastic                          # 75000
 #data_path = "/media/ivan/Ivan/my_data/class_n_10.0.csv"    # 9476 x 553    #10  # PEHD small pieces Red plastic on PORK    # 4500
 
-limit1 = 75000
+limit1 = 1250
+mode = ""
 
 # Read csv
 df = pd.read_csv(data_path)
@@ -51,11 +52,13 @@ spectral = data_array[:,0:r2]
 signal_filtered = spectral.copy()
 
 w = [0.0047, 0.0087, 0.0151, 0.0245, 0.0371, 0.0525, 0.0693, 0.0853, 0.0979, 0.1050, 0.1050, 0.0979, 0.0853, 0.0693, 0.0525, 0.0371, 0.0245, 0.0151, 0.0087, 0.0047]
+#w = [0.15, 0.25, 0.5, 0.25, 0.15]
 
 for i in range(0, r1):
     signal_filtered[i,:] = signal.lfilter(w, 1, spectral[i,:])
 
-# first derivative
+# ======================= first derivative =======================
+    
 signal_filtered_der1 = signal_filtered.copy()
 for k in range(1, r2-1):
     signal_filtered_der1[:,k] = signal_filtered[:,k+1] -signal_filtered[:,k-1]
@@ -64,7 +67,8 @@ signal_filtered_der1 = signal_filtered_der1 * 10
 signal_filtered_der1=np.where(signal_filtered_der1 < -0.5, -0.5, signal_filtered_der1)
 signal_filtered_der1=np.where(signal_filtered_der1 > 0.5, 0.5, signal_filtered_der1)
 
-# second derivative
+# ======================= second derivative =======================
+
 signal_filtered_der2 = signal_filtered.copy()
 for k in range(1, r2-1):
     signal_filtered_der2[:,k] = signal_filtered[:,k+1] -2*signal_filtered[:,k]+signal_filtered[:,k-1]
@@ -72,6 +76,8 @@ for k in range(1, r2-1):
 signal_filtered_der2=signal_filtered_der2 * 100
 signal_filtered_der2=np.where(signal_filtered_der2 < -0.5, -0.5, signal_filtered_der2)
 signal_filtered_der2=np.where(signal_filtered_der2 > 0.5, 0.5, signal_filtered_der2)
+
+# ======================= plotting =======================
 
 limit2 = limit1 + 20
 sample_signals = spectral[limit1:limit2, :]
