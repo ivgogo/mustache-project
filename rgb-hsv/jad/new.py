@@ -21,6 +21,7 @@ example_image = np.transpose(example_image, (0, 2, 1))
 
 #result = index_61 - index_57
 
+# conveyor indexes
 index_61 = example_image[:, :, 30]
 index_57 = example_image[:, :, 25]
 
