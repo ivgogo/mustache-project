@@ -8,3 +8,6 @@ ruta_imagen = "/media/ivan/Ivan/jad_spectral/src_Specim-FX17e-076900055547_00.ti
 with rasterio.open(ruta_imagen) as src:
     # Mostrar la imagen
     show(src)
+
+
+    34676511024

@@ -16,14 +16,17 @@ example_image = np.asarray(example_image)
 example_image = np.transpose(example_image, (0, 2, 1))
 #print(example_image.shape)
 
-#index_61 = example_image[:, :, 61]
-#index_57 = example_image[:, :, 57]
+index_61 = example_image[:, :, 61]
+index_57 = example_image[:, :, 57]
+
+index_154 = example_image[:, :, 154]
+index_146 = example_image[:, :, 146]
 
 #result = index_61 - index_57
 
 # conveyor indexes
-index_61 = example_image[:, :, 30]
-index_57 = example_image[:, :, 25]
+#index_61 = example_image[:, :, 30]
+#index_57 = example_image[:, :, 25]
 
 result = index_61 - index_57
 
