@@ -45,6 +45,7 @@ random_samples_indexes = random.sample(range(n_total_samples), num_samples_to_se
 random_samples = data_array[random_samples_indexes, :]
 
 # plotting
+'''
 plt.figure(figsize=(16, 12))
 
 for i, sample_signal in enumerate(random_samples):
@@ -55,8 +56,9 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.legend()
 plt.show()
+'''
 
-# ================================================================================================
+# ====================================================================================================
 
 medias_x = []
 stds_x = []
@@ -82,7 +84,7 @@ stds_y = np.array(stds_y)
 plt.scatter(df['x'], df['y'], label='Dataset Completo', alpha=0.5)
 
 # Plotear cada punto del listado con la media y la desviación estándar
-for i, punto in enumerate(listado_puntos):
+for i, punto in enumerate(points_list):
     plt.scatter(punto[0], punto[1], color='red', marker='x', label=f'Punto de Interés {i + 1}')
     plt.errorbar(punto[0], punto[1], xerr=stds_x[i], yerr=stds_y[i], color='red', linestyle='None', label='Desviación Estándar')
 
