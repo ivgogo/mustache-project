@@ -1,6 +1,5 @@
 import numpy as np
 import cv2
-from PIL import Image 
 
 # Trackbar callback
 def on_trackbar(val):
@@ -29,11 +28,11 @@ def on_trackbar(val):
     cv2.imshow("TrackedBars", numpy_horizontal)
 
 # Load an image
-image_path = "/home/ivan/Descargas/mustache_project/rgb-hsv/output_image.tiff"
+image_path = "/home/ivan/Descargas/test1.jpg"
 frame = cv2.imread(image_path)
 
 # Create trackbars to change the value of hue min and max and sat min
-cv2.namedWindow("TrackedBars")
+cv2.namedWindow("TrackedBars", cv2.WINDOW_NORMAL)
 cv2.createTrackbar("Hue Min", "TrackedBars", 0, 179, on_trackbar)
 cv2.createTrackbar("Hue Max", "TrackedBars", 0, 179, on_trackbar)
 cv2.createTrackbar("Sat Min", "TrackedBars", 0, 255, on_trackbar)
