@@ -42,7 +42,7 @@ slope2 = np.abs((point25-point39)/(25-39))
 slope3 = np.abs((point39-point44)/(39-44))
 slope4 = np.abs((point44-point53)/(44-53))
 slope5 = np.abs((point53-point57)/(53-57))
-slope6 = np.abs((point57-point61)/(57-61))
+slope6 = np.abs((point57-point61)/(57-61)*100)
 slope7 = np.abs((point61-point80)/(61-80))
 slope8 = np.abs((point80-point112)/(80-112))
 slope9 = np.abs((point112-point146)/(112-146))
@@ -53,7 +53,7 @@ all_slopes_1 = [slope1, slope2, slope3, slope4, slope5, slope6, slope7, slope8, 
 # ========================================= N2 =========================================
 
 slope2_1 = np.abs((point25-point44)/(25-44))
-slope2_2 = np.abs((point57-point61)/(57-61)*50)
+slope2_2 = np.abs((point57-point61)/(57-61)*80)
 slope2_3 = np.abs((point44-point80)/(44-80))
 slope2_4 = np.abs((point80-point112)/(80-112))
 slope2_5 = np.abs((point112-point154)/(112-154))
@@ -74,11 +74,11 @@ fig, axs = plt.subplots(1, 2)
 
 # sat
 axs[0].imshow(saturation1)
-axs[0].set_title('Sat Map 1')
+axs[0].set_title('Saturation Map 1')
 
 # hue
 axs[1].imshow(saturation2)
-axs[1].set_title('Sat Map 2')
+axs[1].set_title('Saturation Map 2')
 
 plt.tight_layout()
 plt.show()
