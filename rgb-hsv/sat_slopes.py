@@ -8,8 +8,8 @@ from PIL import Image
 
 # data_file_dir = "/media/ivan/Ivan/jad_spectral/src_Specim-FX17e-076900055547_00.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad_spectral/src_Specim-FX17e-076900055547_01.tiff"
-data_file_dir = "/media/ivan/Ivan/jad_spectral/src_Specim-FX17e-076900055547_02.tiff"
-# data_file_dir = "/media/ivan/Ivan/jad_spectral/src_Specim-FX17e-076900055547_03.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad_spectral/src_Specim-FX17e-076900055547_02.tiff"
+data_file_dir = "/media/ivan/Ivan/jad_spectral/src_Specim-FX17e-076900055547_03.tiff"
 
 example_image = []
 
