@@ -25,7 +25,7 @@ for subdir in os.listdir(file_path):
                             mats=spectral_data,
                             flags=cv2.IMREAD_UNCHANGED
                         )
-                        
+
                         spectral_data = np.asarray(spectral_data)
                         spectral_data = np.transpose(spectral_data, (0, 2, 1))
 
@@ -82,22 +82,22 @@ for subdir in os.listdir(file_path):
                         
                         if (3 in segmented_image) and ("normal" in data_file_dir):
                             print(f"False positive in image: {data_file_dir}")
-                            # Visualization
-                            color_map = colors.ListedColormap([
-                                color_correspondences[0],
-                                color_correspondences[1],
-                                color_correspondences[2],
-                                color_correspondences[3]
-                            ])
-                            print([
-                                color_correspondences[0],
-                                color_correspondences[1],
-                                color_correspondences[2],
-                                color_correspondences[3]
-                            ])
+                            # # Visualization
+                            # color_map = colors.ListedColormap([
+                            #     color_correspondences[0],
+                            #     color_correspondences[1],
+                            #     color_correspondences[2],
+                            #     color_correspondences[3]
+                            # ])
+                            # print([
+                            #     color_correspondences[0],
+                            #     color_correspondences[1],
+                            #     color_correspondences[2],
+                            #     color_correspondences[3]
+                            # ])
 
-                            plt.imshow(segmented_image, interpolation="nearest", cmap=color_map, vmin=0, vmax=4)
-                            plt.show()
+                            # plt.imshow(segmented_image, interpolation="nearest", cmap=color_map, vmin=0, vmax=4)
+                            # plt.show()
                         else:
                             print(f"{data_file_dir} correctly labeled!")        
                         
