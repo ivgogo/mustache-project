@@ -60,7 +60,7 @@ for subdir in os.listdir(file_path):
                                     fat_condition > -0.00025,
                                     (spectral_data[:, :, 30] - spectral_data[:, :, 25]) < 0.0
                                 ),
-                                (spectral_data[:, :, 61] - spectral_data[:, :, 57]) > 0.0015
+                                (spectral_data[:, :, 61] - spectral_data[:, :, 57]) > 0.00045   # 0.0015 before
                             )
                         )
 
@@ -82,22 +82,22 @@ for subdir in os.listdir(file_path):
                         
                         if (3 in segmented_image) and ("normal" in data_file_dir):
                             print(f"False positive in image: {data_file_dir}")
-                            # # Visualization
-                            # color_map = colors.ListedColormap([
-                            #     color_correspondences[0],
-                            #     color_correspondences[1],
-                            #     color_correspondences[2],
-                            #     color_correspondences[3]
-                            # ])
-                            # print([
-                            #     color_correspondences[0],
-                            #     color_correspondences[1],
-                            #     color_correspondences[2],
-                            #     color_correspondences[3]
-                            # ])
+                            # Visualization
+                            color_map = colors.ListedColormap([
+                                color_correspondences[0],
+                                color_correspondences[1],
+                                color_correspondences[2],
+                                color_correspondences[3]
+                            ])
+                            print([
+                                color_correspondences[0],
+                                color_correspondences[1],
+                                color_correspondences[2],
+                                color_correspondences[3]
+                            ])
 
-                            # plt.imshow(segmented_image, interpolation="nearest", cmap=color_map, vmin=0, vmax=4)
-                            # plt.show()
+                            plt.imshow(segmented_image, interpolation="nearest", cmap=color_map, vmin=0, vmax=4)
+                            plt.show()
                         else:
                             print(f"{data_file_dir} correctly labeled!")        
                         
