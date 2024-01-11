@@ -68,7 +68,7 @@ for subdir in os.listdir(file_path):
 
                         # Plastic classification
                         light_check = (spectral_data[:, :, 61] + spectral_data[:, :, 57]) > 0.05
-                        red_check = (spectral_data[:, :, 61] - spectral_data[:, :, 57]) < 0.0015
+                        red_check = (spectral_data[:, :, 61] - spectral_data[:, :, 57]) < 0.00045
                         crease_check = (spectral_data[:, :, 153] - spectral_data[:, :, 150]) < 0.0
                         extra_check = (spectral_data[:, :, 60] - spectral_data[:, :, 53]) > 0.001
                         extra_check = False
