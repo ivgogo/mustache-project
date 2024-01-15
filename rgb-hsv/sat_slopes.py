@@ -7,9 +7,7 @@ from skimage import exposure
 from PIL import Image
 
 # 512, 827 43 image3
-
 # 193, 572 01 image4
-
 # 108, 303 04 image4
 
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_00.tiff"
@@ -98,7 +96,6 @@ slope2_4 = np.abs((point80-point112)/(80-112))
 slope2_5 = np.abs((point112-point154)/(112-154))
 
 all_slopes_2 = [slope2_1, slope2_2, slope2_3, slope2_4, slope2_5]
-
 
 saturation1 = (3 * np.minimum.reduce([slope1, slope2, slope3, slope4, slope5, slope6, slope7, slope8, slope9, slope10])) / (sum(all_slopes_1))
 saturation2 = (3 * np.minimum.reduce([slope2_1, slope2_2, slope2_3, slope2_4, slope2_5, peaks_sum])) / (sum(all_slopes_2) + peaks_sum)
