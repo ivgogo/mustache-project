@@ -106,7 +106,7 @@ saturation2 = (saturation2-saturation2.min())/(saturation2.max()-saturation2.min
 
 # ========================================= kill pixels =========================================
 
-threshold = 0.2
+threshold = 0.35
 
 new_plot = np.ones_like(example_image[:, :, 0])
 
