@@ -104,22 +104,6 @@ saturation2 = (3 * np.minimum.reduce([slope2_1, slope2_2, slope2_3, slope2_4, sl
 saturation1 = (saturation1-saturation1.min())/(saturation1.max()-saturation1.min()) * 255
 saturation2 = (saturation2-saturation2.min())/(saturation2.max()-saturation2.min()) * 255
 
-# ========================================= kill pixels =========================================
-
-threshold = 0.35
-
-new_plot = np.ones_like(example_image[:, :, 0])
-
-for x in range(example_image.shape[0]):
-    for y in range(example_image.shape[1]):
-        mean_value = np.mean(example_image[x, y, :])
-
-        if mean_value > threshold:
-            new_plot[x, y] = 0
-
-plt.imshow(new_plot, cmap='gray')
-plt.show()
-
 # ====================================== plotting ======================================
 
 fig, axs = plt.subplots(1, 2)
