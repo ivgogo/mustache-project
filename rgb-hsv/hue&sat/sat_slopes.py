@@ -10,14 +10,14 @@ from PIL import Image
 # 193, 572 01 image4
 # 108, 303 04 image4
 
-data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_00.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_00.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_01.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_02.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_03.tiff"
 
 # images_4
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_00.tiff"
-# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
+data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_02.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_03.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
@@ -74,24 +74,24 @@ peaks_sum = sum(peaks)/len(peaks)
 
 # ========================================= N1 =========================================
 
-slope1 = np.abs((point0-point25)/(0-25))
-slope2 = np.abs((point25-point39)/(25-39))
-slope3 = np.abs((point39-point44)/(39-44))
-slope4 = np.abs((point44-point53)/(44-53))
-slope5 = np.abs((point53-point57)/(53-57))
+slope1 = np.abs((point0-point25)/(0-25)/10)
+slope2 = np.abs((point25-point39)/(25-39)/10)
+slope3 = np.abs((point39-point44)/(39-44)/10)
+slope4 = np.abs((point44-point53)/(44-53)/10)
+slope5 = np.abs((point53-point57)/(53-57)/10)
 slope6 = np.abs((point57-point61)/(57-61)*100)
-slope7 = np.abs((point61-point80)/(61-80)/20)
-slope8 = np.abs((point80-point112)/(80-112))
-slope9 = np.abs((point112-point146)/(112-146))
-slope10 = np.abs((point146-point159)/(146-159))
+slope7 = np.abs((point61-point80)/(61-80)*10)
+slope8 = np.abs((point80-point112)/(80-112)/10)
+slope9 = np.abs((point112-point146)/(112-146)/10)
+slope10 = np.abs((point146-point159)/(146-159)/10)
 
 all_slopes_1 = [slope1, slope2, slope3, slope4, slope5, slope6, slope7, slope8, slope9, slope10]
 
 # ========================================= N2 =========================================
 
 slope2_1 = np.abs((point25-point44)/(25-44))
-slope2_2 = np.abs((point57-point61)/(57-61)*20000)
-slope2_3 = np.abs((point44-point80)/(44-80)/2000)
+slope2_2 = np.abs((point57-point61)/(57-61)*100)
+slope2_3 = np.abs((point44-point80)/(44-80))
 slope2_4 = np.abs((point80-point112)/(80-112))
 slope2_5 = np.abs((point112-point154)/(112-154))
 

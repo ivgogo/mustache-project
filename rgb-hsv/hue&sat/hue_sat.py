@@ -12,9 +12,22 @@ import imageio
 
 # data_file_dir = "/media/ivan/Ivan/jad_spectral/src_Specim-FX17e-076900055547_00.tiff"
 
+# images_3
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_03.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_11.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_21.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_27.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_32.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_37.tiff"
+data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_43.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_51.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_54.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_69.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_71.tiff"
+
 # images_4
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_00.tiff"
-data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
+# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_02.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_03.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
@@ -34,8 +47,9 @@ print(example_image.shape)
 
 
 # valle característico plástico 
-red = example_image[:, :, 53]   # 53
-green = example_image[:, :, 57] # 57
+# red = example_image[:, :, 53]   # 53
+red = example_image[:, :, 58]   # 58
+green = example_image[:, :, 53] # 57
 blue = example_image[:, :, 61]  # 61
 
 # mustache
@@ -102,15 +116,21 @@ condition = np.less_equal(blue, green)
 
 # apply condition
 h = np.where(condition, hue, 360 - hue)
+print(h.max())
+final = np.where(h>358.9, 0, 1)
 
 
 # ====================================== plotting ======================================
 
-fig, axs = plt.subplots(1, 2)
+fig, axs = plt.subplots(1,2)
 
 # sat
-axs[0].imshow(saturation)
-axs[0].set_title('Saturation')
+# axs[0].imshow(saturation)
+# axs[0].set_title('Saturation')
+
+# mask
+axs[0].imshow(final)
+axs[0].set_title('"Mask"')
 
 # hue
 axs[1].imshow(h)
