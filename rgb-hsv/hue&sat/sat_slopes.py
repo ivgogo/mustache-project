@@ -16,8 +16,8 @@ from PIL import Image
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_03.tiff"
 
 # images_4
-# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_00.tiff"
-data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
+data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_00.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_02.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_03.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
@@ -90,15 +90,16 @@ all_slopes_1 = [slope1, slope2, slope3, slope4, slope5, slope6, slope7, slope8, 
 # ========================================= N2 =========================================
 
 slope2_1 = np.abs((point25-point44)/(25-44))
-slope2_2 = np.abs((point57-point61)/(57-61)*100)
+slope2_2 = np.abs((point57-point61)/(57-61)*500)
 slope2_3 = np.abs((point44-point80)/(44-80))
 slope2_4 = np.abs((point80-point112)/(80-112))
 slope2_5 = np.abs((point112-point154)/(112-154))
+slope_extra = np.abs((point53-point61)/(61-53)/500)
 
-all_slopes_2 = [slope2_1, slope2_2, slope2_3, slope2_4, slope2_5]
+all_slopes_2 = [slope2_1, slope2_2, slope2_3, slope2_4, slope2_5, slope_extra]
 
 saturation1 = (3 * np.minimum.reduce([slope1, slope2, slope3, slope4, slope5, slope6, slope7, slope8, slope9, slope10])) / (sum(all_slopes_1))
-saturation2 = (3 * np.minimum.reduce([slope2_1, slope2_2, slope2_3, slope2_4, slope2_5])) / (sum(all_slopes_2))  #  + peaks_sum
+saturation2 = (3 * np.minimum.reduce([slope2_1, slope2_2, slope2_3, slope2_4, slope2_5, slope_extra])) / (sum(all_slopes_2))  #  + peaks_sum
 
 # normalize
 saturation1 = (saturation1-saturation1.min())/(saturation1.max()-saturation1.min()) * 255
