@@ -33,10 +33,10 @@ import imageio
 
 # images_4
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_00.tiff"
-data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
+# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_02.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_03.tiff"
-# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
+data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_05.tiff"
 
 example_image = []
@@ -58,8 +58,6 @@ red = example_image[:, :, 58]   # 58
 green = example_image[:, :, 53] # 57
 blue = example_image[:, :, 61]  # 61
 
-
-
 # mustache
 extra1 = example_image[:, :, 146]
 extra2 = example_image[:, :, 154]
@@ -74,18 +72,18 @@ extra6 = example_image[:, :, 80]
 
 
 # ====================================== jad ======================================
-# point1 = example_image[:, :, 25]
-# point2 = example_image[:, :, 44]
-# point3 = example_image[:, :, 80]
-# point4 = example_image[:, :, 154]
-pointd = (example_image[:, :, 61] - example_image[:, :, 57])/4
+point1 = example_image[:, :, 25]
+point2 = example_image[:, :, 44]
+point3 = example_image[:, :, 80]
+point4 = example_image[:, :, 154]
+pointd = ((example_image[:, :, 61] - example_image[:, :, 57])/4)*1000
 
 
 # ====================================== all points ======================================
-point1 = example_image[:, :, 25]
-point2 = example_image[:, :, 30]
-point3 = example_image[:, :, 39]
-point4 = example_image[:, :, 44]
+# point1 = example_image[:, :, 25]
+# point2 = example_image[:, :, 30]
+# point3 = example_image[:, :, 39]
+# point4 = example_image[:, :, 44]
 point5 = example_image[:, :, 53]
 point6 = example_image[:, :, 57]
 point7 = example_image[:, :, 61]
