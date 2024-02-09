@@ -5,6 +5,7 @@ import cv2
 import sys
 from skimage import exposure
 from PIL import Image
+from scipy.ndimage import convolve
 
 # 512, 827 43 image3
 # 193, 572 01 image4
@@ -127,6 +128,34 @@ saturation4 = (saturation4-saturation4.min())/(saturation4.max()-saturation4.min
 Best for small plastic detection --> Slopes 2 + slope_extra
 Bigger plastic --> Slopes 2 + peaks_sum
 '''
+
+# ====================================== Tests ======================================
+
+# Define el tamaño del kernel para calcular la suma de los valores de los píxeles vecinos
+tam_kernel = (9, 9)  # Tamaño del kernel para la convolución en cada dimensión
+
+# Crea el kernel con unos para que la convolución calcule la suma de los valores de los píxeles vecinos
+kernel = np.ones(tam_kernel)
+
+# Realiza la convolución para calcular la suma de los valores de los píxeles vecinos para cada píxel
+# Asegúrate de especificar el modo de convolución para que la salida tenga el mismo tamaño que la entrada
+suma_pixeles_vecinos = convolve(saturation2, kernel, mode='constant')
+
+# Supongamos que tenemos un umbral de suma de píxeles vecinos
+umbral = 500
+
+# Crea una máscara booleana donde True indica que la suma de los píxeles vecinos es mayor que el umbral
+mascara_superacion_umbral = suma_pixeles_vecinos > umbral
+
+# Utiliza la máscara para identificar los píxeles que superan el umbral
+pixeles_superan_umbral = saturation2.copy()  # Copia de la imagen original
+pixeles_superan_umbral[~mascara_superacion_umbral] = np.nan  # Establece los píxeles que no superan el umbral como NaN
+
+# Visualiza la máscara de los píxeles que superan el umbral
+plt.imshow(pixeles_superan_umbral, cmap='gray')
+plt.colorbar()
+plt.title('Píxeles que superan el umbral')
+plt.show()
 
 # ====================================== Plotting ======================================
 
