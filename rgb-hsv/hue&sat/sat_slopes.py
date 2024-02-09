@@ -48,7 +48,7 @@ example_image = np.asarray(example_image)
 example_image = np.transpose(example_image, (0, 2, 1))
 print(example_image.shape)
 
-# ========================================= points =========================================
+# ========================================= Points =========================================
 
 point0 = example_image[:, :, 0]
 point25 = example_image[:, :, 25]
@@ -63,11 +63,11 @@ point146 = example_image[:, :, 146]
 point154 = example_image[:, :, 154]
 point159 = example_image[:, :, 159]
 
-# ========================================= peaks =========================================
+points_list = [point0, point25, point39, point44, point53, point57, point61, point80, point112, point146, point154, point159]
 
-'''
-Points 25 ,44, 80, 154
-'''
+# ========================================= Peaks =========================================
+
+# Points 25 ,44, 80, 154
 
 peaks = [point25, point44, point80, point154]
 peaks_sum = sum(peaks)/len(peaks)
@@ -79,11 +79,12 @@ slope2 = np.abs((point25-point39)/(25-39)/10)
 slope3 = np.abs((point39-point44)/(39-44)/10)
 slope4 = np.abs((point44-point53)/(44-53)/10)
 slope5 = np.abs((point53-point57)/(53-57)/10)
-slope6 = np.abs((point57-point61)/(57-61)*100)
+slope6 = np.abs((point57-point61)/(57-61)*500)
 slope7 = np.abs((point61-point80)/(61-80)*10)
 slope8 = np.abs((point80-point112)/(80-112)/10)
 slope9 = np.abs((point112-point146)/(112-146)/10)
 slope10 = np.abs((point146-point159)/(146-159)/10)
+slope_extra = np.abs((point53-point61)/(61-53)/100)
 
 all_slopes_1 = [slope1, slope2, slope3, slope4, slope5, slope6, slope7, slope8, slope9, slope10]
 
@@ -97,20 +98,42 @@ slope2_5 = np.abs((point112-point154)/(112-154))
 slope_extra = np.abs((point53-point61)/(61-53)/500)
 
 all_slopes_2 = [slope2_1, slope2_2, slope2_3, slope2_4, slope2_5, slope_extra]
+all_slopes_2_we = [slope2_1, slope2_2, slope2_3, slope2_4, slope2_5]
+
+# ========================================= Sat Equations (slopes N1 and N2) =========================================
 
 saturation1 = (3 * np.minimum.reduce([slope1, slope2, slope3, slope4, slope5, slope6, slope7, slope8, slope9, slope10])) / (sum(all_slopes_1))
-saturation2 = (3 * np.minimum.reduce([slope2_1, slope2_2, slope2_3, slope2_4, slope2_5, slope_extra])) / (sum(all_slopes_2))  #  + peaks_sum
+saturation2 = (3 * np.minimum.reduce([slope2_1, slope2_2, slope2_3, slope2_4, slope2_5, slope_extra])) / (sum(all_slopes_2)) 
 
 # normalize
 saturation1 = (saturation1-saturation1.min())/(saturation1.max()-saturation1.min()) * 255
 saturation2 = (saturation2-saturation2.min())/(saturation2.max()-saturation2.min()) * 255
 
-# ====================================== plotting ======================================
+# ========================================= Sat Equations (only peaks) =========================================
+
+saturation3 = (3 * np.minimum.reduce(peaks)) / (sum(peaks))
+saturation3 = (saturation3-saturation3.min())/(saturation3.max()-saturation3.min()) * 255
+
+# ========================================= Sat Equations (slopes N2 + peaks_sum) =========================================
+
+# quitar slope_extra de all_slopes_2
+saturation4 = (3 * np.minimum.reduce([slope2_1, slope2_2, slope2_3, slope2_4, slope2_5, peaks_sum])) / (sum(all_slopes_2_we + peaks_sum))
+saturation4 = (saturation4-saturation4.min())/(saturation4.max()-saturation4.min()) * 255
+
+# ========================================= Conclusions =========================================
+
+'''
+-Best combinations for detection:
+Best for small plastic detection --> Slopes 2 + slope_extra
+Bigger plastic --> Slopes 2 + peaks_sum
+'''
+
+# ====================================== Plotting ======================================
 
 fig, axs = plt.subplots(1, 2)
 
 # sat
-axs[0].imshow(saturation1)
+axs[0].imshow(saturation4)
 axs[0].set_title('Saturation Map 1')
 
 # hue

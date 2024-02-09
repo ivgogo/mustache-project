@@ -16,7 +16,7 @@ import imageio
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_00.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_01.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_02.tiff"
-# data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_03.tiff"
+data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_03.tiff"
 
 # images_3
 # data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_03.tiff"
@@ -36,7 +36,7 @@ import imageio
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_02.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_03.tiff"
-data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
+# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_05.tiff"
 
 example_image = []
@@ -51,39 +51,37 @@ example_image = np.asarray(example_image)
 example_image = np.transpose(example_image, (0, 2, 1))
 print(example_image.shape)
 
+# ====================================== Points of interest for Hue ======================================
 
 # valle característico plástico 
-# red = example_image[:, :, 53]   # 53
 red = example_image[:, :, 58]   # 58
-green = example_image[:, :, 53] # 57
+green = example_image[:, :, 57] # 57
 blue = example_image[:, :, 61]  # 61
 
-# mustache
+# Mustache
 extra1 = example_image[:, :, 146]
 extra2 = example_image[:, :, 154]
 extra3 = example_image[:, :, 159]
-
-# insignia conveyor belt
+# Conveyor belt points of interest
 extra4 = example_image[:, :, 25]
 extra5 = example_image[:, :, 30]
-
-#
+# 
 extra6 = example_image[:, :, 80]
 
 
-# ====================================== jad ======================================
+# ====================================== Points Jad ======================================
 point1 = example_image[:, :, 25]
 point2 = example_image[:, :, 44]
 point3 = example_image[:, :, 80]
 point4 = example_image[:, :, 154]
-pointd = ((example_image[:, :, 61] - example_image[:, :, 57])/4)*1000
+pointd = ((example_image[:, :, 61] - example_image[:, :, 57])/4)*10
 
 
-# ====================================== all points ======================================
-# point1 = example_image[:, :, 25]
-# point2 = example_image[:, :, 30]
-# point3 = example_image[:, :, 39]
-# point4 = example_image[:, :, 44]
+# ====================================== All Points ======================================
+point1 = example_image[:, :, 25]
+point2 = example_image[:, :, 30]
+point3 = example_image[:, :, 39]
+point4 = example_image[:, :, 44]
 point5 = example_image[:, :, 53]
 point6 = example_image[:, :, 57]
 point7 = example_image[:, :, 61]
@@ -95,24 +93,29 @@ point12 = example_image[:, :, 159]
 
 points_list = [25,30,39,44,53,57,61,80,112,146,154,159]
 
-# combine to get rgb
-# image_rgb = np.stack([red, green, blue], axis=-1)
-# plt.imshow(image_rgb)
-# plt.show()
-# np.save('test.npy', image_rgb)
-# sys.exit()
+# ====================================== Saturation Equations ======================================
 
 # saturation
-# saturation = (3 * np.minimum.reduce([red, blue, green])) / (red + blue + green)
+# saturation = (3 * np.minimum.reduce([red, blue, green])) / (red + blue + green) 
+# pretty decent with red = 58, green = 53 and blue = 61
+# pretty decent with red = 58, green = 57 and blue = 61 --> la rodea bastante bien  
 
 # jad
-saturation = (3 * np.minimum.reduce([point1, point2, point3, point4, pointd])) / (point1 + point2 + point3 + point4 + pointd)
+# saturation = (3 * np.minimum.reduce([point1, point2, point3, point4, pointd])) / (point1 + point2 + point3 + point4 + pointd)   # decent
 
 # all points
-# saturation = (3 * np.minimum.reduce([point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12])) / (sum(points_list))
+# saturation = (3 * np.minimum.reduce([point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12])) / (sum(points_list))    # BAD detection
 
 # all points + derivative of region 1 of interest plastic
-# saturation = (3 * np.minimum.reduce([point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, pointd])) / (sum(points_list) + pointd)
+# saturation = (3 * np.minimum.reduce([point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12, pointd])) / (sum(points_list) + pointd)   # not really good
+
+# ====================================== Hue Equations ======================================
+
+# mejores valores hue --> red=58, green=57 y blue=61 (plásticos grandes)
+# mejores valores hue para plásticos pequeños --> red=58, green=53 y blue=61
+# red=53, green=58, blue=61
+# red=53, green=57, blue=61
+# red=57, green=53, blue=61
 
 # hue
 hue = np.arccos((1/2*((red-green)+(red-blue)))/np.sqrt(pow((red-green),2)+(red-blue)*(red-blue)))
@@ -122,8 +125,9 @@ condition = np.less_equal(blue, green)
 
 # apply condition
 h = np.where(condition, hue, 360 - hue)
-print(h.max())
-final = np.where(h>358.9, 0, 1)
+
+# Mask
+mask = np.where(h>358.9, 0, 1)
 
 
 # ====================================== plotting ======================================
@@ -135,7 +139,7 @@ fig, axs = plt.subplots(1,2)
 # axs[0].set_title('Saturation')
 
 # mask
-axs[0].imshow(final)
+axs[0].imshow(mask)
 axs[0].set_title('"Mask"')
 
 # hue
