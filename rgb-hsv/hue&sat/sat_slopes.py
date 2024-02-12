@@ -49,20 +49,44 @@ example_image = np.asarray(example_image)
 example_image = np.transpose(example_image, (0, 2, 1))
 print(example_image.shape)
 
+# Normalize before anything
+
+# method 1
+# mean_value = np.mean(example_image)
+# std_value = np.std(example_image)
+# normalized_image = (example_image - mean_value) / std_value
+
+# method 2
+normalized_image = example_image.copy()
+normalized_image = (normalized_image-normalized_image.min())/(normalized_image.max()-normalized_image.min()) * 255
+
 # ========================================= Points =========================================
 
-point0 = example_image[:, :, 0]
-point25 = example_image[:, :, 25]
-point39 = example_image[:, :, 39]
-point44 = example_image[:, :, 44]
-point53 = example_image[:, :, 53]
-point57 = example_image[:, :, 57]
-point61 = example_image[:, :, 61]
-point80 = example_image[:, :, 80]
-point112 = example_image[:, :, 112]
-point146 = example_image[:, :, 146]
-point154 = example_image[:, :, 154]
-point159 = example_image[:, :, 159]
+# point0 = example_image[:, :, 0]
+# point25 = example_image[:, :, 25]
+# point39 = example_image[:, :, 39]
+# point44 = example_image[:, :, 44]
+# point53 = example_image[:, :, 53]
+# point57 = example_image[:, :, 57]
+# point61 = example_image[:, :, 61]
+# point80 = example_image[:, :, 80]
+# point112 = example_image[:, :, 112]
+# point146 = example_image[:, :, 146]
+# point154 = example_image[:, :, 154]
+# point159 = example_image[:, :, 159]
+
+point0 = normalized_image[:, :, 0]
+point25 = normalized_image[:, :, 25]
+point39 = normalized_image[:, :, 39]
+point44 = normalized_image[:, :, 44]
+point53 = normalized_image[:, :, 53]
+point57 = normalized_image[:, :, 57]
+point61 = normalized_image[:, :, 61]
+point80 = normalized_image[:, :, 80]
+point112 = normalized_image[:, :, 112]
+point146 = normalized_image[:, :, 146]
+point154 = normalized_image[:, :, 154]
+point159 = normalized_image[:, :, 159]
 
 points_list = [point0, point25, point39, point44, point53, point57, point61, point80, point112, point146, point154, point159]
 
@@ -107,19 +131,19 @@ saturation1 = (3 * np.minimum.reduce([slope1, slope2, slope3, slope4, slope5, sl
 saturation2 = (3 * np.minimum.reduce([slope2_1, slope2_2, slope2_3, slope2_4, slope2_5, slope_extra])) / (sum(all_slopes_2)) 
 
 # normalize
-saturation1 = (saturation1-saturation1.min())/(saturation1.max()-saturation1.min()) * 255
-saturation2 = (saturation2-saturation2.min())/(saturation2.max()-saturation2.min()) * 255
+# saturation1 = (saturation1-saturation1.min())/(saturation1.max()-saturation1.min()) * 255
+# saturation2 = (saturation2-saturation2.min())/(saturation2.max()-saturation2.min()) * 255
 
 # ========================================= Sat Equations (only peaks) =========================================
 
 saturation3 = (3 * np.minimum.reduce(peaks)) / (sum(peaks))
-saturation3 = (saturation3-saturation3.min())/(saturation3.max()-saturation3.min()) * 255
+# saturation3 = (saturation3-saturation3.min())/(saturation3.max()-saturation3.min()) * 255
 
 # ========================================= Sat Equations (slopes N2 + peaks_sum) =========================================
 
 # quitar slope_extra de all_slopes_2
 saturation4 = (3 * np.minimum.reduce([slope2_1, slope2_2, slope2_3, slope2_4, slope2_5, peaks_sum])) / (sum(all_slopes_2_we + peaks_sum))
-saturation4 = (saturation4-saturation4.min())/(saturation4.max()-saturation4.min()) * 255
+# saturation4 = (saturation4-saturation4.min())/(saturation4.max()-saturation4.min()) * 255
 
 # ========================================= Conclusions =========================================
 
