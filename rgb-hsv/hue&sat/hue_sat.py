@@ -16,7 +16,7 @@ import imageio
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_00.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_01.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_02.tiff"
-data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_03.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_03.tiff"
 
 # images_3
 # data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_03.tiff"
@@ -36,7 +36,7 @@ data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-07690005
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_02.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_03.tiff"
-# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
+data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
 # data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_05.tiff"
 
 example_image = []
@@ -57,9 +57,15 @@ print(example_image.shape)
 # ====================================== Points of interest for Hue ======================================
 
 # valle característico plástico 
-red = example_image[:, :, 58]   # 58
+red = example_image[:, :, 53]   # 58
 green = example_image[:, :, 57] # 57
 blue = example_image[:, :, 61]  # 61
+
+# mejores valores hue --> red=58, green=57 y blue=61 (plásticos grandes)
+# mejores valores hue para plásticos pequeños --> red=58, green=53 y blue=61
+# red=53, green=58, blue=61 # ok con los 4 mas o menos
+# red=53, green=57, blue=61 # ok con los 4 mas o menos
+# red=57, green=53, blue=61 # resultados muy parecidos a 58,53,61 solo buenos con los peques
 
 # Mustache
 extra1 = example_image[:, :, 146]
@@ -104,7 +110,7 @@ points_list = [25,30,39,44,53,57,61,80,112,146,154,159]
 # pretty decent with red = 58, green = 57 and blue = 61 --> la rodea bastante bien  
 
 # jad
-# saturation = (3 * np.minimum.reduce([point1, point2, point3, point4, pointd])) / (point1 + point2 + point3 + point4 + pointd)   # decent
+saturation = (3 * np.minimum.reduce([point1, point2, point3, point4, pointd])) / (point1 + point2 + point3 + point4 + pointd)   # decent
 
 # all points
 # saturation = (3 * np.minimum.reduce([point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, point11, point12])) / (sum(points_list))    # BAD detection
@@ -138,12 +144,12 @@ mask = np.where(h>358.9, 0, 1)
 fig, axs = plt.subplots(1,2)
 
 # sat
-# axs[0].imshow(saturation)
-# axs[0].set_title('Saturation')
+axs[0].imshow(saturation)
+axs[0].set_title('Saturation')
 
-# mask
-axs[0].imshow(mask)
-axs[0].set_title('"Mask"')
+# # mask
+# axs[0].imshow(mask)
+# axs[0].set_title('"Mask"')
 
 # hue
 axs[1].imshow(h)
