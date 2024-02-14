@@ -51,8 +51,8 @@ example_image = np.asarray(example_image)
 example_image = np.transpose(example_image, (0, 2, 1))
 print(example_image.shape)
 
-# normalized_image = example_image.copy()
-# example_image = (normalized_image-normalized_image.min())/(normalized_image.max()-normalized_image.min()) * 255
+normalized_image = example_image.copy()
+example_image = (normalized_image-normalized_image.min())/(normalized_image.max()-normalized_image.min()) * 255
 
 # ====================================== Points of interest for Hue ======================================
 
