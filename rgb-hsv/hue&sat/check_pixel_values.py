@@ -1,0 +1,109 @@
+import matplotlib.pyplot as plt
+import pandas as pd 
+import numpy as np 
+import cv2
+import sys
+
+# images_1
+# data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_00.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_01.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_02.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_03.tiff"
+
+# images_2
+# data_file_dir = "/media/ivan/Ivan/jad/images_2/normal/src_Specim-FX17e-076900055547_00.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_2/src_Specim-FX17e-076900055547_01.tiff"     # bad image
+# data_file_dir = "/media/ivan/Ivan/jad/images_2/normal/src_Specim-FX17e-076900055547_02.tiff"
+
+# images_3
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_03.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_11.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_21.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_27.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_32.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_37.tiff"
+data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_43.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_51.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_54.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_69.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_71.tiff"
+
+# images_4
+# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_00.tiff"
+data_file_dir_2 = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_01.tiff"     # Plastic yes
+# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_02.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_03.tiff"
+# data_file_dir_2 = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_04.tiff"       # plastic YES
+# data_file_dir = "/media/ivan/Ivan/jad/images_4/plastic/src_Specim-FX17e-076900055547_05.tiff"
+
+example_image = []
+
+_, example_image = cv2.imreadmulti(
+    filename=data_file_dir,
+    mats=example_image,
+    flags=cv2.IMREAD_UNCHANGED
+)
+
+example_image = np.asarray(example_image)
+example_image = np.transpose(example_image, (0, 2, 1))
+
+example_image_2 = []
+
+_, example_image_2 = cv2.imreadmulti(
+    filename=data_file_dir_2,
+    mats=example_image_2,
+    flags=cv2.IMREAD_UNCHANGED
+)
+
+example_image_2 = np.asarray(example_image_2)
+example_image_2 = np.transpose(example_image_2, (0, 2, 1))
+
+# normalized_image = example_image.copy()
+# normalized_image = (normalized_image-normalized_image.min())/(normalized_image.max()-normalized_image.min()) * 255
+
+# normalized_image_2 = example_image_2.copy()
+# normalized_image_2 = (normalized_image_2-normalized_image_2.min())/(normalized_image_2.max()-normalized_image_2.min()) * 255
+
+# =============================================================================================
+
+# y, x = 0, 0
+# y2, x2 = 0, 0
+
+# signal1 = normalized_image[x, y, :]
+# signal2 = normalized_image_2[x2, y2, :]
+
+y, x = 512, 827     # POINT 512, 827 of image 43 (false positive) - images_3 folder
+y2, x2 = 193, 572     # POINT 193, 572 of image 01 (very small plastic) - images_4 folder
+# y2, x2 = 108, 303     # POINT 108, 303 of image 04 (very small plastic) - images_4 folder
+
+signal1 = example_image[x, y, :]
+signal2 = example_image_2[x2, y2, :]
+
+v1 = example_image[x, y, 25]       # grasa
+v11 = example_image[x, y, 80]       # grasa
+v2 = example_image_2[x2, y2, 154]   # plástico
+v22 = example_image_2[x2, y2, 25]
+v23 = example_image_2[x2, y2, 80]
+# dif = np.abs(v2-v1)
+# mid = (v1+v2)/2
+# print(f'valor1: {v1} | valor2: {v2} | Diff: {dif} | Middle point: {mid}')
+# print(v1/v2)
+# print(v11/v2)
+print(v22)
+print(v23)
+
+# =============================================================================================
+
+# test = np.gradient(np.gradient(signal1))
+# test2 = np.gradient(np.gradient(signal2))
+# a1 = np.gradient(signal1)
+# a12 = np.gradient(signal2)
+# plt.plot(signal1, label='signal1 (false positive)')
+# plt.plot(signal2, label='signal2 (plastic)')
+# plt.plot(a1, label='signal1 deriv.1 (false positive)')
+# plt.plot(a12, label='signal2 deriv.1 (plastic)')
+# plt.plot(test, label='signal1 deriv.2 (false positive)')
+# plt.plot(test2, label='signal2 deriv.2 (plastic)')
+# plt.legend()
+# plt.show()
+

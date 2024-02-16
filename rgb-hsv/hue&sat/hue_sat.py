@@ -87,20 +87,20 @@ pointd = ((example_image[:, :, 61] - example_image[:, :, 57])/4)*10
 
 
 # ====================================== All Points ======================================
-point1 = example_image[:, :, 25]
-point2 = example_image[:, :, 30]
-point3 = example_image[:, :, 39]
-point4 = example_image[:, :, 44]
-point5 = example_image[:, :, 53]
-point6 = example_image[:, :, 57]
-point7 = example_image[:, :, 61]
-point8 = example_image[:, :, 80]
-point9 = example_image[:, :, 112]
-point10 = example_image[:, :, 146]
-point11 = example_image[:, :, 154]
-point12 = example_image[:, :, 159]
+# point1 = example_image[:, :, 25]
+# point2 = example_image[:, :, 30]
+# point3 = example_image[:, :, 39]
+# point4 = example_image[:, :, 44]
+# point5 = example_image[:, :, 53]
+# point6 = example_image[:, :, 57]
+# point7 = example_image[:, :, 61]
+# point8 = example_image[:, :, 80]
+# point9 = example_image[:, :, 112]
+# point10 = example_image[:, :, 146]
+# point11 = example_image[:, :, 154]
+# point12 = example_image[:, :, 159]
 
-points_list = [25,30,39,44,53,57,61,80,112,146,154,159]
+# points_list = [25,30,39,44,53,57,61,80,112,146,154,159]
 
 # ====================================== Saturation Equations ======================================
 
