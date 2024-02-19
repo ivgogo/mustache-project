@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 
 # images_1
-data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_00.tiff"
+# data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_00.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_01.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_02.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-076900055547_03.tiff"
@@ -16,7 +16,7 @@ data_file_dir = "/media/ivan/Ivan/jad/images_1/plastic/src_Specim-FX17e-07690005
 # data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_27.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_32.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_37.tiff"
-# data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_43.tiff"
+data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_43.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_51.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_54.tiff"
 # data_file_dir = "/media/ivan/Ivan/jad/images_3/normal/src_Specim-FX17e-076900055547_69.tiff"
@@ -58,24 +58,24 @@ y, x = 512, 827     # POINT 512, 827 of image 43 (false positive) - images_3 fol
 y2, x2 = 193, 572     # POINT 193, 572 of image 01 (very small plastic) - images_4 folder
 # y2, x2 = 108, 303     # POINT 108, 303 of image 04 (very small plastic) - images_4 folder
 
-# points = [25, 80]
+points = [25, 80]
 
-# valuesplastic = [0.6172515, 0.45261446]
+valuesplastic = [0.6172515, 0.45261446]
 
-# signal = example_image[x, y, points]
+signal = example_image_2[x2, y2, points]
 
-# value154 = example_image_2[x2, y2, 154]
+value154 = example_image_2[x2, y2, 154]
 
-# # y1 = 3.9372995
-# # y2 = 3.0223446
+# y1 = 3.9372995
+# y2 = 3.0223446
 
-# y1 = 4.737672888
-# y2 = 3.474012223
+y1 = 4.737672888
+y2 = 3.474012223
 
-# signal1 = example_image[x, y, :]
-# num_points = len(points)
-# op = (1/2)*(pow((value154*y1-signal[0]), 2) + pow(value154*y2-signal[1], 2))
-# print(op)
+signal1 = example_image[x, y, :]
+num_points = len(points)
+op = (1/2)*(pow((value154*y1-signal[0]), 2) + pow(value154*y2-signal[1], 2))
+print(op)
 
 #  ==========================================================================================
 

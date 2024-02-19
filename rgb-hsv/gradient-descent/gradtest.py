@@ -1,0 +1,41 @@
+# https://realpython.com/gradient-descent-algorithm-python/
+import numpy as np
+
+def gradient_descent(gradient, start, learn_rate, n_iter):
+    vector = start.astype(float)  # float64
+    for _ in range(n_iter):
+        print(gradient(vector))
+        diff = -learn_rate * gradient(vector)
+        print(diff)
+        vector += diff
+        print(vector)
+    return vector
+
+# # Funció gradient
+# def gradient(y):
+#     # grad_y1 = 0.1302857995 * y[0] - 0.6172515
+#     # grad_y2 = 0.1302857995 * y[1] - 0.45261446
+#     grad_y1 = 0.1302857995 
+#     grad_y2 = 0.1302857995
+#     return np.array([grad_y1, grad_y2])
+
+# # Funció gradient
+# def gradient(y):
+#     m = len(y)
+#     grad_y1 = (1/m) * np.sum(0.1302857995 * y[0] - 0.6172515)
+#     grad_y2 = (1/m) * np.sum(0.1302857995 * y[1] - 0.45261446)
+#     return np.array([grad_y1, grad_y2])
+
+# Funció gradient
+def gradient(y):
+    m = len(y)
+    grad_y1 = (1/m) * (0.1302857995 * y[0] - 0.6172515)
+    grad_y2 = (1/m) * (0.1302857995 * y[1] - 0.45261446)
+    return np.array([grad_y1, grad_y2])
+
+# Call gradient_descent amb la funció gradient, punt d'inici, lr i nº iteracions
+start = np.array([0, 0])
+learn_rate = 1
+n_iter = 250
+result = gradient_descent(gradient, start, learn_rate, n_iter)
+print(f"Result: {result}")
