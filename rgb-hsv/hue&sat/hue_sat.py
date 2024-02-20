@@ -136,7 +136,14 @@ condition = np.less_equal(blue, green)
 h = np.where(condition, hue, 360 - hue)
 
 # Mask
-mask = np.where(h>358.89, 0, 1)
+mask = np.where(h>358.895, 0, 1)
+
+
+
+m2 = np.where(mask==0)
+coords = list(zip(m2[0], m2[1]))
+positions = mask[m2]
+print(coords)
 
 
 # ====================================== plotting ======================================
