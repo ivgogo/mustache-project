@@ -34,8 +34,8 @@ def f(x, data_array):
 # =============================
 start = np.array([0, 0])
 
-result = opt.minimize(f, start, args=(data_array,))
-print(result)
+# result = opt.minimize(f, start, args=(data_array,))
+# print(result)
 
 # result_g = opt.fmin_cg(f, start, args=(data_array,))
 # print(result_g)
