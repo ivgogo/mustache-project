@@ -10,7 +10,7 @@ start_time = time.time()
 #data_path = "/media/ivan/Ivan/hyperspectral_project/data/pork_part1_16_data.csv" # 117024 x 554
 #data_path = "/media/ivan/Ivan/hyperspectral_project/data/red_big_part1_13_data.csv" # 152986 x 554
 #data_path = "/media/ivan/Ivan/hyperspectral_project/data/red_small_on_fat_part2_09_data.csv" # 9475 x 554
-#data_path = "/media/ivan/Ivan/hyperspectral_project/data/red_small_on_meat_part2_08_data.csv" # 5917 x 554
+data_path = "/media/ivan/Ivan/hyperspectral_project/data/red_small_on_meat_part2_08_data.csv" # 5917 x 554
 
 #data_path = "/home/ivan/Documentos/hyperspectral_project/data/red_small_on_meat_part2_08_data.csv"
 #data_path = "/home/ivan/Documentos/hyperspectral_project/data/pork_part1_04_data.csv"
@@ -28,7 +28,7 @@ start_time = time.time()
 #data_path = "/home/ivan/Documentos/ivan_m/ready/train/d2x/d2x.csv"
 
 #data_path = "/media/ivan/Ivan/ivan/csv_test/conveyor_belt_part1_03_data.csv"        # 120902 x 553
-data_path = "/media/ivan/Ivan/ivan/csv_test/pork_part1_04_data.csv"                #  49753 x 553
+# data_path = "/media/ivan/Ivan/ivan/csv_test/pork_part1_04_data.csv"                #  49753 x 553
 #data_path = "/media/ivan/Ivan/ivan/csv_test/pork_part2_05_data.csv"                #  40010 x 553
 #data_path = "/media/ivan/Ivan/ivan/csv_test/pork_part6_05_data.csv"                #  11870 x 553
 #data_path = "/media/ivan/Ivan/ivan/csv_test/red_big_part1_13_data.csv"             #  152987 x 553
