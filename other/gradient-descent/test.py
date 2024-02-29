@@ -19,8 +19,6 @@ df_false_positives = df_false_positives.drop(df_false_positives.columns[0], axis
 print(df_big_red_meat)
 # print(df_false_positives)
 
-
-
 df_big_red_meat_m = df_big_red_meat.iloc[1000,:]
 df_big_red_fat_m = df_big_red_fat.iloc[1000,:]
 
