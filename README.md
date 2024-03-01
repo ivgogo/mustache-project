@@ -1,9 +1,8 @@
 # Hyperspectral Camera - Project 
 
+## PENDENT ACABAR D'ORGANITZAR CODI
+
 ## Contents
 
-- **data**: 
-- **models**:
-- **run**:
-- **scripts**:
-- **utilities**:
+- **neural-network**: 
+- **other**:
